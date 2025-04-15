@@ -1,10 +1,141 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
   min-height: 100vh;
-  background-color: #fff;
   font-family: "Inter", sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.contentContainer {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+/* Wrapper that changes based on state */
+.leftContainerOnly {
+  display: flex;
+  flex-direction: column;
+}
+
+.splitContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 80px);
+}
+
+.leftContainer {
+  display: flex;
+  width: 580px;
+  height: 709px;
+  padding: 89px 90px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  background: var(--Background, #fff);
+  box-shadow: 3px 3px 4px 0px rgba(82, 85, 91, 0.25);
+  flex-shrink: 0;
+}
+
+.rightBackgroundContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.rightContainer {
+  width: 100%;
+  padding: 2rem;
+}
+
+.leftContainerOnly {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+  background-color: #f5f7f9;
+}
+
+.splitContainer {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 80px);
+}
+
+.leftContainerBackground {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f7f9;
+  transition: transform 0.6s ease-in-out;
+  will-change: transform;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Card-style box */
+.leftContainer {
+  width: 580px;
+  height: 709px;
+  padding: 89px 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 3px 3px 4px rgba(82, 85, 91, 0.25);
+  gap: 20px;
+}
+
+/* Right side layout */
+.rightBackgroundContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+/* Optional: padding for right panel */
+.rightContainer {
+  width: 100%;
+  padding: 2rem;
+}
+
+.headerText {
+  color: #202020;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.warningText {
+  color: #52555b;
+  text-align: center;
+  font-size: 16px;
+}
+
+.leftShifted {
+  transform: translateX(-10%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

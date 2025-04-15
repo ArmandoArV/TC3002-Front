@@ -1,19 +1,59 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import FileUploadComponent from "./Components/FileUploadComponent/FileUploadComponent";
+import ButtonComponent from "./Components/ButtonComponent/ButtonComponent";
+import HeaderComponent from "./Components/HeaderComponent/HeaderComponent";
 
 export default function Home() {
+  const [showRightContainer, setShowRightContainer] = useState(false);
+
   const handleFileSelect = (file: File | null) => {
     console.log("Selected file:", file);
   };
+
   return (
-    <div className={styles["main"]}>
-      <div className={styles["leftContainer"]}>
-      <FileUploadComponent onFileSelect={handleFileSelect} />
+    <div>
+      <HeaderComponent />
+      <div
+        className={
+          showRightContainer ? styles.splitContainer : styles.leftContainerOnly
+        }
+      >
+        <div
+          className={`${styles.leftContainerBackground} ${
+            showRightContainer ? styles.leftShifted : ""
+          }`}
+        >
+          <div className={styles.leftContainer}>
+            <h1 className={styles.headerText}>
+              Clasificador de lesiones elementales primarias en la piel
+            </h1>
+
+            <FileUploadComponent onFileSelect={handleFileSelect} />
+
+            <ButtonComponent
+              text="Iniciar análisis"
+              onClick={() => setShowRightContainer(true)}
+              className={styles.searchButton}
+            />
+
+            <p className={styles.warningText}>
+              *Este es un software que utiliza IA para clasificar las imágenes y
+              es solamente para fines académicos.
+            </p>
+          </div>
+        </div>
+
+        {showRightContainer && (
+          <div className={styles.rightBackgroundContainer}>
+            <div className={styles.rightContainer}>
+              {/* Right Panel Content */}
+              <FileUploadComponent onFileSelect={handleFileSelect} />
+            </div>
+          </div>
+        )}
       </div>
-      <div className={styles["rightContainer"]}></div>
     </div>
   );
 }

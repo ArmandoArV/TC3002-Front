@@ -1,14 +1,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --GrisClaro: #F5F7F9;
+  --LightBlue: #95ABB6;
+  --MainBlue: #125F8B;
+  --DarkBlue: #0E4057;
+  --Texto: #202020;
+  --GrisOscuro: #52555B;
+  --GrisClaro: #F5F7F9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
 
 html,
 body {
