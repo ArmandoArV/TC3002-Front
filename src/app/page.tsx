@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import FileUploadComponent from "./Components/FileUploadComponent/FileUploadComponent";
 import ButtonComponent from "./Components/ButtonComponent/ButtonComponent";
 import HeaderComponent from "./Components/HeaderComponent/HeaderComponent";
-
+import PanelResult from "./Components/Containers/PanelResult/PanelResult";
 export default function Home() {
   const [showRightContainer, setShowRightContainer] = useState(false);
 
@@ -48,8 +48,7 @@ export default function Home() {
         {showRightContainer && (
           <div className={styles.rightBackgroundContainer}>
             <div className={styles.rightContainer}>
-              {/* Right Panel Content */}
-              <FileUploadComponent onFileSelect={handleFileSelect} />
+              <PanelResult />
             </div>
           </div>
         )}
