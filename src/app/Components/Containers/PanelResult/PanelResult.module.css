@@ -1,126 +1,131 @@
 .panelContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 2rem;
-    padding: 1rem;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .predictionContainer {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .topLeftContainer {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .imageWrapper {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .topRightContainer {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .titleContainer h2,
-  .titleContainer {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .textContainer {
-    font-size: 1rem;
-    color: #444;
-    line-height: 1.6;
-  }
-  
-  .rightTopContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .leftPrediction {
-    font-weight: 600;
-    color: #000;
-    margin-right: 0.5rem;
-  }
-  
-  .rightPrediction {
-    font-weight: 400;
-    color: #666;
-  }
-  
-  .predictionsContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .predictionContainer .titleContainer {
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .characteristicsContainer,
-  .referenceContainer,
-  .informationContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .imagesContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .topImagesContainer,
-  .bottomImagesContainer {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-  }
-  
-  .leftImageWrapper,
-  .mediumImageWrapper,
-  .rightImageWrapper {
-    flex: 1;
-    position: relative;
-    min-height: 150px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .image {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .text {
-    color: #333;
-    font-size: 0.95rem;
-  }
-  
-  .informationContainer p a {
-    color: #2e6edb;
-    text-decoration: underline;
-    font-weight: 500;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+  padding: 1rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.predictionContainer {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.topLeftContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.referenceImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.topRightContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.titleContainer h2,
+.titleContainer {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.textContainer {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.rightTopContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftPrediction {
+  font-weight: 600;
+  color: #000;
+  margin-right: 0.5rem;
+}
+
+.rightPrediction {
+  font-weight: 400;
+  color: #666;
+}
+
+.predictionsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.predictionContainer .titleContainer {
+  font-weight: 500;
+  color: #333;
+}
+
+.characteristicsContainer,
+.referenceContainer,
+.informationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.imagesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topImagesContainer,
+.bottomImagesContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.leftImageWrapper,
+.mediumImageWrapper,
+.rightImageWrapper {
+  flex: 1;
+  position: relative;
+  min-height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.informationContainer p a {
+  color: #2e6edb;
+  text-decoration: underline;
+  font-weight: 500;
+}

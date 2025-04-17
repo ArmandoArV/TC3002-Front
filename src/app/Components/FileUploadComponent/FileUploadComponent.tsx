@@ -2,8 +2,8 @@
 
 import React, { useRef, useState } from "react";
 import styles from "./FileUploadComponent.module.css";
-import uploadIcon from "../../Assets/Images/uploadIcon.png"; // Replace with actual cloud icon
-import confirmationIcon from "../../Assets/Images/confirmationIcon.png"; // Replace with your confirmation icon
+import uploadIcon from "../../Assets/Images/uploadIcon.png";
+import confirmationIcon from "../../Assets/Images/confirmationIcon.png";
 
 interface FileUploadProps {
   label?: string;
@@ -13,6 +13,8 @@ interface FileUploadProps {
   labelStyle?: React.CSSProperties;
   style?: React.CSSProperties;
   id?: string;
+  accept?: string;
+  maxSizeMB?: number;
 }
 
 const FileUploadComponent: React.FC<FileUploadProps> = ({
@@ -23,24 +25,56 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
   labelStyle = {},
   style = {},
   id = "",
+  accept = "image/png, image/jpeg, image/jpg",
+  maxSizeMB = 20,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const validateFile = (file: File): boolean => {
+    // Check file type
+    const validTypes = accept.split(", ");
+    if (!validTypes.includes(file.type)) {
+      setError(`Formato no soportado. Use: ${accept}`);
+      return false;
+    }
+
+    // Check file size
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      setError(`El archivo excede el límite de ${maxSizeMB}MB`);
+      return false;
+    }
+
+    setError(null);
+    return true;
+  };
+
+  const handleFile = (file: File | null) => {
+    if (file && !validateFile(file)) {
+      setUploadedFile(null);
+      onFileSelect(null);
+      return;
+    }
+
+    setUploadedFile(file);
+    onFileSelect(file);
+  };
 
   const handleClick = () => {
     fileInputRef.current?.click();
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
-    setUploadedFile(file);
-    onFileSelect(file);
+    handleFile(event.target.files?.[0] || null);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setUploadedFile(null);
     onFileSelect(null);
+    setError(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -60,11 +94,7 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    const file = e.dataTransfer.files?.[0] || null;
-    if (file) {
-      setUploadedFile(file);
-      onFileSelect(file);
-    }
+    handleFile(e.dataTransfer.files?.[0] || null);
   };
 
   return (
@@ -90,7 +120,9 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
       >
         {uploadedFile ? (
           <div className={styles.uploadedFileContainer}>
-            <span className={styles.uploadedFileName}>{uploadedFile.name}</span>
+            <span className={styles.uploadedFileName}>
+              {uploadedFile.name}
+            </span>
             <img
               src={confirmationIcon.src}
               alt="Confirmation"
@@ -98,12 +130,9 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
             />
             <button
               className={styles.deleteButton}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDelete();
-              }}
+              onClick={handleDelete}
             >
-              X
+              ×
             </button>
           </div>
         ) : (
@@ -117,7 +146,7 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
               Selecciona la imagen o arrástrala aquí
             </span>
             <span className={styles.uploadHint}>
-              PNG, JPEG, JPG. Máx 20 MB.
+              {accept.replace(/image\//g, "").replace(/, /g, ", ")}. Máx {maxSizeMB}MB.
             </span>
           </>
         )}
@@ -127,8 +156,15 @@ const FileUploadComponent: React.FC<FileUploadProps> = ({
           onChange={handleFileChange}
           className={styles.fileInputHidden}
           id={id}
+          accept={accept}
         />
       </div>
+      
+      {error && (
+        <div className={styles.errorMessage}>
+          {error}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,7 +3,15 @@ import styles from "./PanelResult.module.css";
 import Image from "next/image";
 import referenceImage1 from "../../../Assets/Images/reference1.png";
 
-const PanelResult = () => {
+interface PanelResultProps {
+  predictions: Array<{ class: string; percentage: string }>;
+  realPrediction: any;
+}
+
+const PanelResult: React.FC<PanelResultProps> = ({
+  predictions = [],
+  realPrediction = null
+}) => {
   return (
     <div className={styles["panelContainer"]}>
       <div className={styles["predictionContainer"]}>
@@ -35,18 +43,12 @@ const PanelResult = () => {
                 <div className={styles["titleContainer"]}>Roncha -</div>
                 <div className={styles["textContainer"]}>99</div>
               </div>
-              <div className={styles["predictionContainer"]}>
-                <div className={styles["titleContainer"]}>Roncha -</div>
-                <div className={styles["textContainer"]}>99</div>
-              </div>
-              <div className={styles["predictionContainer"]}>
-                <div className={styles["titleContainer"]}>Roncha -</div>
-                <div className={styles["textContainer"]}>99</div>
-              </div>
-              <div className={styles["predictionContainer"]}>
-                <div className={styles["titleContainer"]}>Roncha -</div>
-                <div className={styles["textContainer"]}>99</div>
-              </div>
+              {predictions.map((prediction, index) => (
+                <div key={index} className={styles["predictionContainer"]}>
+                  <div className={styles["titleContainer"]}>{prediction.class} -</div>
+                  <div className={styles["textContainer"]}>{prediction.percentage}</div>
+                </div>
+              ))}
             </div>
           </div>
           <div className={styles["rightBottomContainer"]}>
