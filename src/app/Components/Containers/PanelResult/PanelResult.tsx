@@ -10,8 +10,10 @@ interface PanelResultProps {
 
 const PanelResult: React.FC<PanelResultProps> = ({
   predictions = [],
-  realPrediction = null
+  realPrediction = [],
 }) => {
+  console.log("PanelResult predictions:", predictions);
+  console.log("PanelResult realPrediction:", realPrediction);
   return (
     <div className={styles["panelContainer"]}>
       <div className={styles["predictionContainer"]}>
@@ -32,20 +34,17 @@ const PanelResult: React.FC<PanelResultProps> = ({
               <h2 className={styles["title"]}>Clasificación:</h2>
             </div>
             <div className={styles["textContainer"]}>
-              <div className={styles["leftPrediction"]}></div>
-              <div className={styles["rightPrediction"]}></div>
-            </div>
+              <p className={styles["text"]}>
+                {realPrediction?.prediction || "No hay predicción disponible"} - {realPrediction?.percentage || "No hay porcentaje disponible"}
+              </p>
+              </div>
           </div>
           <div className={styles["rightMediumContainer"]}>
             <div className={styles["titleContainer"]}></div>
             <div className={styles["predictionsContainer"]}>
-              <div className={styles["predictionContainer"]}>
-                <div className={styles["titleContainer"]}>Roncha -</div>
-                <div className={styles["textContainer"]}>99</div>
-              </div>
               {predictions.map((prediction, index) => (
                 <div key={index} className={styles["predictionContainer"]}>
-                  <div className={styles["titleContainer"]}>{prediction.class} -</div>
+                  <div className={styles["titleContainer"]}>{prediction.class}</div>
                   <div className={styles["textContainer"]}>{prediction.percentage}</div>
                 </div>
               ))}
@@ -55,11 +54,7 @@ const PanelResult: React.FC<PanelResultProps> = ({
             <div className={styles["titleContainer"]}>Definición Médica:</div>
             <div className={styles["textContainer"]}>
               <p className={styles["text"]}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                tincidunt, nunc at venenatis facilisis, nunc nisl aliquet nunc,
-                eget aliquam nisl nunc eget nunc. Sed tincidunt, nunc at
-                venenatis facilisis, nunc nisl aliquet nunc, eget aliquam nisl
-                nunc eget nunc.
+               {realPrediction?.info_elemental || "No hay información disponible"}
               </p>
             </div>
           </div>
@@ -71,10 +66,7 @@ const PanelResult: React.FC<PanelResultProps> = ({
         </div>
         <div className={styles["textContainer"]}>
           <p className={styles["text"]}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            tincidunt, nunc at venenatis facilisis, nunc nisl aliquet nunc, eget
-            aliquam nisl nunc eget nunc. Sed tincidunt, nunc at venenatis
-            facilisis, nunc nisl aliquet nunc, eget aliquam nisl nunc eget nunc.
+            {realPrediction?.caracteristicas_clave || "No hay información disponible"}
           </p>
         </div>
       </div>
@@ -149,10 +141,7 @@ const PanelResult: React.FC<PanelResultProps> = ({
         </div>
         <div className={styles["textContainer"]}>
           <p className={styles["text"]}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            tincidunt, nunc at venenatis facilisis, nunc nisl aliquet nunc, eget
-            aliquam nisl nunc eget nunc. Sed tincidunt, nunc at venenatis
-            facilisis, nunc nisl aliquet nunc, eget aliquam nisl nunc eget nunc.
+            {realPrediction?.mas_informacion || "No hay información disponible"} Conoce más sobre esta enfermedad en el siguiente enlace: <a href={realPrediction?.url || "#"} target="_blank" rel="noopener noreferrer">link</a>
           </p>
         </div>
       </div>
