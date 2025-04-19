@@ -73,3 +73,35 @@
   transition: 0.3s;
   scale: 1.05;
 }
+
+.newAnalysisButton{
+  display: flex;
+  padding: 15px 25px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--DarkBlue, #0e4057);
+  color: var(--Background, #fff);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media (max-width: 767px) {
+  .leftContainer {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    border-radius: 0px;
+    box-shadow: none;
+    padding: 2rem;
+    margin: 0;
+    flex-shrink: 0;
+    position: relative;
+    
+  }
+}

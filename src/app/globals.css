@@ -20,6 +20,14 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

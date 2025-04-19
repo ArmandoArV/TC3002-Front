@@ -18,7 +18,7 @@ interface FileUploadContainerProps {
       realPrediction: IRealPrediction | null;
     }>
   >;
-  setUploadedImage: React.Dispatch<React.SetStateAction<string | null>>; 
+  setUploadedImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export default function FileUploadContainer({
@@ -28,6 +28,8 @@ export default function FileUploadContainer({
 }: FileUploadContainerProps) {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [analysisCompleted, setAnalysisCompleted] = useState(false); // New state to track analysis completion
+
   const router = useRouter(); // Now using the correct router
 
   const handleAnalyze = async () => {
@@ -39,10 +41,13 @@ export default function FileUploadContainer({
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_ENDPOINT_URL}/inference/predict`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_REACT_ENDPOINT_URL}/inference/predict`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (!response.ok) throw new Error("Analysis failed");
 
@@ -66,6 +71,7 @@ export default function FileUploadContainer({
       );
 
       router.push(`/?result=true`);
+      setAnalysisCompleted(true);
     } catch (error) {
       console.error("Error:", error);
       alert("Analysis failed. Please try again.");
@@ -83,23 +89,42 @@ export default function FileUploadContainer({
     setFile(file);
   };
 
+  const handleNewAnalysis = () => {
+    setFile(null); // Reset the file state
+    setUploadedImage(null); // Reset the uploaded image state
+    setAnalysisCompleted(false); // Reset analysis completion state
+    router.push("/"); // Navigate to the root route
+  };
+
   return (
     <div className={styles.leftContainer}>
       <h1 className={styles.headerText}>
         Clasificador de lesiones elementales primarias en la piel
       </h1>
+      {!analysisCompleted && (
+        <FileUploadComponent
+          onFileSelect={handleFileSelect}
+          accept="image/png, image/jpeg, image/jpg"
+        />
+      )}
 
-      <FileUploadComponent
-        onFileSelect={handleFileSelect}
-        accept="image/png, image/jpeg, image/jpg"
-      />
-
-      <ButtonComponent
+      {!analysisCompleted && (
+        <ButtonComponent
         text={isLoading ? "Analizando..." : "Iniciar análisis"}
-        onClick={handleAnalyze}
-        className={styles.searchButton}
-        disabled={!file || isLoading}
-      />
+          onClick={handleAnalyze}
+          className={styles.searchButton}
+          disabled={!file || isLoading} // Disable if no file or loading
+        />
+      )}
+      {isLoading && <div className={styles.loadingText}>Cargando...</div>}
+
+      {analysisCompleted && (
+        <ButtonComponent
+          text="Nuevo análisis"
+          onClick={handleNewAnalysis}
+          className={styles.newAnalysisButton}
+        />
+      )}
 
       <p className={styles.warningText}>
         *Este es un software que utiliza IA para clasificar las imágenes y es
