@@ -18,10 +18,13 @@ interface FileUploadContainerProps {
       realPrediction: IRealPrediction | null;
     }>
   >;
+  setUploadedImage: React.Dispatch<React.SetStateAction<string | null>>; 
 }
+
 export default function FileUploadContainer({
   initialData,
   setResults,
+  setUploadedImage, // Added prop for setting the uploaded image URL
 }: FileUploadContainerProps) {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,6 +74,15 @@ export default function FileUploadContainer({
     }
   };
 
+  const handleFileSelect = (file: File | null) => {
+    if (file) {
+      setUploadedImage(URL.createObjectURL(file)); // Update the uploaded image URL
+    } else {
+      setUploadedImage(null);
+    }
+    setFile(file);
+  };
+
   return (
     <div className={styles.leftContainer}>
       <h1 className={styles.headerText}>
@@ -78,7 +90,7 @@ export default function FileUploadContainer({
       </h1>
 
       <FileUploadComponent
-        onFileSelect={setFile}
+        onFileSelect={handleFileSelect}
         accept="image/png, image/jpeg, image/jpg"
       />
 

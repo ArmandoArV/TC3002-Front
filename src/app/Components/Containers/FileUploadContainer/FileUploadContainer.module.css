@@ -58,6 +58,15 @@
   line-height: normal;
 }
 
+/*Search button disabled*/
+.searchButton:disabled {
+  background: var(--DarkBlueDisabled, #3c4b52);
+  color: var(--Background, #fff);
+  cursor: not-allowed;
+  transition: 0.3s;
+  scale: 1;
+}
+
 .searchButton:hover {
   background: var(--DarkBlueHover, #0c2e3f);
   cursor: pointer;
