@@ -4,33 +4,21 @@ import FileUploadComponent from "../../FileUploadComponent/FileUploadComponent";
 import ButtonComponent from "../../ButtonComponent/ButtonComponent";
 import styles from "./FileUploadContainer.module.css";
 import { useRouter } from "next/navigation"; // Updated import
-
-interface Prediction {
-  class: string;
-  percentage: string;
-}
-
-interface RealPrediction {
-  info_elemental: string;
-  mas_informacion: string;
-  percentage: string;
-  prediction: string;
-  url: string;
-}
+import { IPrediction } from "@/app/Interfaces/IPrediction";
+import { IRealPrediction } from "@/app/Interfaces/IRealPrediction";
 
 interface FileUploadContainerProps {
   initialData: {
-    predictions: Prediction[];
-    realPrediction: RealPrediction | null;
+    predictions: IPrediction[];
+    realPrediction: IRealPrediction | null;
   };
   setResults: React.Dispatch<
     React.SetStateAction<{
-      predictions: Prediction[];
-      realPrediction: RealPrediction | null;
+      predictions: IPrediction[];
+      realPrediction: IRealPrediction | null;
     }>
   >;
 }
-
 export default function FileUploadContainer({
   initialData,
   setResults,
@@ -59,17 +47,22 @@ export default function FileUploadContainer({
 
       const parsedResults = {
         predictions: data.all_predictions || [],
-        realPrediction: data.real_prediction?.[0] || null,
+        realPrediction: Array.isArray(data.real_prediction)
+          ? data.real_prediction[0]
+          : data.real_prediction || null,
       };
 
       setResults(parsedResults);
 
       // Serialize and pass parsedResults in the query string
-      const predictions = encodeURIComponent(JSON.stringify(parsedResults.predictions));
-      const realPrediction = encodeURIComponent(JSON.stringify(parsedResults.realPrediction));
+      const predictions = encodeURIComponent(
+        JSON.stringify(parsedResults.predictions)
+      );
+      const realPrediction = encodeURIComponent(
+        JSON.stringify(parsedResults.realPrediction)
+      );
 
       router.push(`/?result=true`);
-
     } catch (error) {
       console.error("Error:", error);
       alert("Analysis failed. Please try again.");

@@ -1,32 +1,3 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh;
-  font-family: "Inter", sans-serif;
-  background-color: white;
-}
-
-.contentContainer {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  position: relative;
-}
-
-
-.leftContainerOnly {
-  display: flex;
-  flex-direction: column;
-}
-
-.splitContainer {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: calc(100vh - 80px);
-  overflow: hidden; 
-}
-
 .leftContainer {
   display: flex;
   width: 580px;
@@ -40,52 +11,6 @@
   background: var(--Background, #fff);
   box-shadow: 3px 3px 4px 0px rgba(82, 85, 91, 0.25);
   flex-shrink: 0;
-}
-.rightBackgroundContainer {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; 
-  background-color: white;
-  animation: fadeIn 0.6s ease-in-out;
-  overflow: hidden; 
-}
-
-.rightContainer {
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  height: 100%; 
-  flex-direction: column;
-  overflow-y: auto; 
-  box-sizing: border-box;
-}
-
-.leftContainerOnly {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 80px);
-  background-color: #f5f7f9;
-}
-
-.splitContainer {
-  display: flex;
-  flex-direction: row;
-  min-height: calc(100vh - 80px);
-}
-
-.leftContainerBackground {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f7f9;
-  transition: transform 0.6s ease-in-out;
-  will-change: transform, opacity;
-  height: 100%;
-  position: relative;
-  opacity: 1;
-  z-index: 2;
 }
 
 /* Card-style box */
@@ -103,15 +28,6 @@
   gap: 20px;
 }
 
-/* Right side layout */
-.rightBackgroundContainer {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-}
-
 .headerText {
   color: #202020;
   text-align: center;
@@ -125,18 +41,26 @@
   font-size: 16px;
 }
 
-.leftShifted {
-  transform: translateX(-10%);
-  pointer-events: none;
+.searchButton {
+  display: flex;
+  padding: 15px 25px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--DarkBlue, #0e4057);
+  color: var(--Background, #fff);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.searchButton:hover {
+  background: var(--DarkBlueHover, #0c2e3f);
+  cursor: pointer;
+  transition: 0.3s;
+  scale: 1.05;
 }

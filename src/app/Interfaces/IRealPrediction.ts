@@ -5,4 +5,5 @@ export interface IRealPrediction {
   percentage: string;
   prediction: string;
   url: string;
+  related_images: string[];
 }
