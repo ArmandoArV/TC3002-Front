@@ -9,8 +9,17 @@
   background: var(--MainBlue, #125f8b);
 }
 
-.leftLogoContainer {
+.leftLogoContainer,
+.rightLogoContainer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  width: 175px;
+  height: 100px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

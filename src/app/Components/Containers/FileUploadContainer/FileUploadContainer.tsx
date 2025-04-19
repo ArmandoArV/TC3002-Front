@@ -39,7 +39,7 @@ export default function FileUploadContainer({
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4000/inference/predict", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_ENDPOINT_URL}/inference/predict`, {
         method: "POST",
         body: formData,
       });
