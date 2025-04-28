@@ -1,0 +1,11 @@
+{
+    "name": "Skin-Scan",
+    "objective": "El objetivo de esta applicación web es identificar y clasificar imágenes de lesiones elementales primarias de la piel utilizando un modelo de IA. Este proyecto fue elaborado por alumnos del Tecnológico de Monterrey en colaboración con la clínica dermatológica Dermatoss.",
+    "steps":{
+        "first": "Selecciona la foto que quieres analizar y súbela o arrástrala desde tus archivos guardados al espacio para subir archivos.",
+        "second": "Dar click en el botón 'Iniciar análisis'.",
+        "third": "Esperar unos segundos en lo que el modelo de IA analiza la imagen y muestra los resultados de la clasificación.",
+        "fourth": "Para analizar otra imagen, repetir los pasos del 1 al 3."
+    },
+    "disclaimer": "*Este es un software que utiliza IA para clasificar las imágnes y es solamente para fines académicos."
+}

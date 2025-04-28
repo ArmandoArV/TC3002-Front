@@ -1,0 +1,175 @@
+.modalContainer {
+  position: fixed;
+  width: 50%;
+  max-height: 80%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.backgroundContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(68, 65, 65, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: var(--Texto, #202020);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.objectiveContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.objectiveText {
+  color: var(--Texto, #202020);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.howContainer {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.howTitle {
+  display: flex;
+}
+
+.howTitleText {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--Texto, #202020);
+  text-align: left;
+}
+
+.howOptions {
+  width: 100%;
+}
+
+.howOptionsList {
+  list-style-type: decimal; /* 1, 2, 3... */
+  padding-left: 20px;
+}
+
+.howOptionsItem {
+  margin-bottom: 10px;
+}
+
+.howOptionsItemText {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--Texto, #202020);
+}
+
+.buttonContainer {
+  margin-top: 30px;
+}
+
+.button {
+  background-color: #084d62;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #063745;
+}
+
+.disclaimer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.disclaimerText {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  color: #707070;
+}
+
+/* Optional: Image styling if you add images later */
+.image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .modalContainer {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .objectiveText,
+  .howOptionsItemText {
+    font-size: 16px;
+  }
+
+  .howTitleText {
+    font-size: 20px;
+  }
+
+  .button {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+}
