@@ -52,6 +52,8 @@
   font-size: 1rem;
   color: #444;
   line-height: 1.6;
+  display: flex;
+  flex-direction: row;
 }
 
 .rightTopContainer {
@@ -128,4 +130,12 @@
   color: #2e6edb;
   text-decoration: underline;
   font-weight: 500;
+}
+
+.leftPredictionText, .rightPredictionText {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }

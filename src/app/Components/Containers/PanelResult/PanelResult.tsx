@@ -45,10 +45,17 @@ const PanelResult: React.FC<PanelResultProps> = ({
               <h2 className={styles["title"]}>Clasificación:</h2>
             </div>
             <div className={styles["textContainer"]}>
-              <p className={styles["text"]}>
-                {realPrediction?.prediction || "No hay predicción disponible"} -{" "}
-                {realPrediction?.percentage || "No hay porcentaje disponible"}
-              </p>
+              <div className={styles["leftPredictionText"]}>
+                <p className={styles["textPrediction"]}>
+                  {realPrediction?.prediction ||
+                    "No hay clasificación disponible"}
+                </p>
+              </div>
+              <div className={styles["rightPredictionText"]}>
+                <p className={styles["textPrediction"]}>
+                  {realPrediction?.percentage || "No hay porcentaje disponible"}
+                </p>
+              </div>
             </div>
           </div>
           <div className={styles["rightMediumContainer"]}>
